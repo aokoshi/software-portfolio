@@ -1,0 +1,101 @@
+{
+  "checkedAt": "2026-09-27",
+  "series": {
+    "6654": [
+      {
+        "number": 1,
+        "title": "Тупой меч — полный фильм",
+        "provider": "wikimedia",
+        "mediaUrl": "https://upload.wikimedia.org/wikipedia/commons/transcoded/1/1d/Namakura_Gatana_with_music.webm/Namakura_Gatana_with_music.webm.480p.vp9.webm",
+        "mime": "video/webm",
+        "source": "https://commons.wikimedia.org/wiki/File:Namakura_Gatana_with_music.webm",
+        "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/Namakura_Gatana_with_music.webm/960px--Namakura_Gatana_with_music.webm.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo",
+        "publisher": "Wikimedia Commons",
+        "originalTitle": "Namakura Gatana (1917)",
+        "language": "Немое кино · музыкальное сопровождение",
+        "credit": "Фильм: Jun’ichi Kōuchi (1917), public domain согласно Commons. Музыка: «Ishikari Lore» — Kevin MacLeod (incompetech.com), CC BY 3.0. Версия опубликована Di (they-them); HikkiAnime не изменяет видео.",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "musicSource": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100192"
+      }
+    ],
+    "40861": [
+      {
+        "number": 1,
+        "title": "Письмо",
+        "videoId": "rYDmL5VH-uk",
+        "source": "https://www.youtube.com/watch?v=rYDmL5VH-uk",
+        "thumbnail": "https://i.ytimg.com/vi/rYDmL5VH-uk/hqdefault.jpg",
+        "publisher": "The Official Pokémon YouTube channel",
+        "publisherUrl": "https://www.youtube.com/@pokemon",
+        "originalTitle": "Pokémon: Twilight Wings | Episode 1 | Letter",
+        "language": "Английский"
+      },
+      {
+        "number": 2,
+        "title": "Тренировка",
+        "videoId": "ZOSoQxSHKKE",
+        "source": "https://www.youtube.com/watch?v=ZOSoQxSHKKE",
+        "thumbnail": "https://i.ytimg.com/vi/ZOSoQxSHKKE/hqdefault.jpg",
+        "publisher": "The Official Pokémon YouTube channel",
+        "publisherUrl": "https://www.youtube.com/@pokemon",
+        "originalTitle": "Pokémon: Twilight Wings | Episode 2 | Training",
+        "language": "Английский"
+      },
+      {
+        "number": 3,
+        "title": "Друг",
+        "videoId": "P0cXpOnfX6I",
+        "source": "https://www.youtube.com/watch?v=P0cXpOnfX6I",
+        "thumbnail": "https://i.ytimg.com/vi/P0cXpOnfX6I/hqdefault.jpg",
+        "publisher": "The Official Pokémon YouTube channel",
+        "publisherUrl": "https://www.youtube.com/@pokemon",
+        "originalTitle": "Pokémon: Twilight Wings | Episode 3 | Buddy",
+        "language": "Английский"
+      },
+      {
+        "number": 4,
+        "title": "Вечерние волны",
+        "videoId": "gfsT2uqJPOc",
+        "source": "https://www.youtube.com/watch?v=gfsT2uqJPOc",
+        "thumbnail": "https://i.ytimg.com/vi/gfsT2uqJPOc/hqdefault.jpg",
+        "publisher": "The Official Pokémon YouTube channel",
+        "publisherUrl": "https://www.youtube.com/@pokemon",
+        "originalTitle": "Pokémon: Twilight Wings | Episode 4 | Early-Evening Waves",
+        "language": "Английский"
+      },
+      {
+        "number": 5,
+        "title": "Помощница",
+        "videoId": "liZuy6ufYMs",
+        "source": "https://www.youtube.com/watch?v=liZuy6ufYMs",
+        "thumbnail": "https://i.ytimg.com/vi/liZuy6ufYMs/hqdefault.jpg",
+        "publisher": "The Official Pokémon YouTube channel",
+        "publisherUrl": "https://www.youtube.com/@pokemon",
+        "originalTitle": "Pokémon: Twilight Wings | Episode 5 | Assistant",
+        "language": "Английский"
+      },
+      {
+        "number": 6,
+        "title": "Лунный свет",
+        "videoId": "CIxj6cUMm7M",
+        "source": "https://www.youtube.com/watch?v=CIxj6cUMm7M",
+        "thumbnail": "https://i.ytimg.com/vi/CIxj6cUMm7M/hqdefault.jpg",
+        "publisher": "The Official Pokémon YouTube channel",
+        "publisherUrl": "https://www.youtube.com/@pokemon",
+        "originalTitle": "Pokémon: Twilight Wings | Episode 6 | Moonlight",
+        "language": "Английский"
+      },
+      {
+        "number": 7,
+        "title": "Небо",
+        "videoId": "3-144RjSRWI",
+        "source": "https://www.youtube.com/watch?v=3-144RjSRWI",
+        "thumbnail": "https://i.ytimg.com/vi/3-144RjSRWI/hqdefault.jpg",
+        "publisher": "The Official Pokémon YouTube channel",
+        "publisherUrl": "https://www.youtube.com/@pokemon",
+        "originalTitle": "Pokémon: Twilight Wings | Episode 7 | Sky",
+        "language": "Английский"
+      }
+    ]
+  }
+}

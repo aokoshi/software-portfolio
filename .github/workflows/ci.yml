@@ -24,6 +24,13 @@ jobs:
         run: node check.mjs
         working-directory: Svetolesye-site
 
+      - name: Anime catalog syntax and domain tests
+        run: |
+          node --check dist/app.js
+          node --check dist/domain.mjs
+          node --test tests/catalog.test.mjs
+        working-directory: HikkiAnime
+
   mobile:
     runs-on: ubuntu-latest
     strategy:

@@ -14,6 +14,8 @@
 | CampusMate | Node.js 24, pnpm 11 | `pnpm install --frozen-lockfile`, затем `pnpm exec expo start --web --port 8081` |
 | PocketBudget | Node.js 24, pnpm 11 | `pnpm install --frozen-lockfile`, затем `pnpm exec expo start --web --port 8082` |
 
+| HikkiAnime | Node.js 24+ | `node server.mjs` (адрес выводится в терминале) |
+
 ## StockFlow и XAMPP
 
 Включите MySQL. Если PHP не добавлен в PATH, в PowerShell замените `php` на `& C:\xampp\php\php.exe`.

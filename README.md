@@ -12,9 +12,9 @@
 
 </div>
 
-Семь учебных проектов с интерфейсами, прикладной логикой, хранением данных и автоматическими проверками. Колледж по разработке ПО, дополнительное образование по веб-разработке; сейчас — второй курс университета. Интересует первая работа в разработке, которую можно совмещать с учёбой.
+Восемь учебных проектов с интерфейсами, прикладной логикой, хранением данных и автоматическими проверками. Колледж по разработке ПО, дополнительное образование по веб-разработке; сейчас — второй курс университета. Интересует первая работа в разработке, которую можно совмещать с учёбой.
 
-This repository brings together seven learning projects across web, desktop, mobile, and game development. Each project includes source code and setup instructions. The application interfaces and detailed documentation are in Russian.
+This repository brings together eight learning projects across web, desktop, mobile, and game development. Each project includes source code and setup instructions. The application interfaces and detailed documentation are in Russian.
 
 ## Проекты
 
@@ -27,6 +27,8 @@ This repository brings together seven learning projects across web, desktop, mob
 | [Сайт игры](Svetolesye-site) | Представление мира и механик «Светолесья» | HTML, CSS, JavaScript | Адаптивность, переключение контента, аудио |
 | [CampusMate](CampusMate) | Учебное расписание, задания и оценки | React Native, Expo, TypeScript | Пересечения занятий, расчёт оценок, локальное хранение |
 | [PocketBudget](PocketBudget) | Личные доходы, расходы и накопления | React Native, Expo, TypeScript | Суммы в целых тиынах, месячные лимиты, CSV/JSON |
+
+| [HikkiAnime](HikkiAnime) | Каталог аниме и просмотр подключённых выпусков | HTML, CSS, JavaScript, Node.js 24 | Импорт открытой базы, фильтры, проверка URL, внешние видеопровайдеры |
 
 ### Дело — площадка цифровых услуг
 
@@ -70,6 +72,14 @@ This repository brings together seven learning projects across web, desktop, mob
 <td><img src="CampusMate/docs/preview.png" alt="Учебный план CampusMate" width="420"></td>
 <td><img src="PocketBudget/docs/preview.png" alt="Расходы PocketBudget" width="420"></td>
 </tr></table>
+
+### HikkiAnime — каталог и просмотр аниме
+
+600 тайтлов из открытой anime-offline-database, поиск по названиям и синонимам, фильтры и адаптивный интерфейс. Подключены классический фильм с Wikimedia Commons и семь официальных выпусков Pokémon на YouTube. Остальные карточки явно отмечены как не имеющие серий; доступность YouTube зависит от провайдера и региона.
+
+Данные сопровождаются лицензией ODbL и указанием источников. Для воспроизведения используется HTML5 video или разрешённый YouTube iframe. [Инструкция и ограничения](HikkiAnime/README.md).
+
+![Страница фильма HikkiAnime](HikkiAnime/docs/preview.png)
 
 ## Начать знакомство
 

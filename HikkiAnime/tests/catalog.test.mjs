@@ -1,0 +1,12 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {filterCatalog,safeUrl,videoUrl,escapeHtml} from '../dist/domain.mjs';
+const catalog=JSON.parse(readFileSync(new URL('../dist/data/catalog.json',import.meta.url))).data;
+const streams=JSON.parse(readFileSync(new URL('../dist/data/episodes.json',import.meta.url))).series;
+test('Imported catalog has unique IDs, provenance and licensed selection',()=>{assert.equal(catalog.length,600);assert.equal(new Set(catalog.map(x=>x.id)).size,600);for(const a of catalog){assert.ok(a.source.startsWith('https://myanimelist.net/anime/'));assert.ok(a.title);assert.ok(Array.isArray(a.aliases));}});
+test('Russian names and accent-insensitive original names resolve',()=>{assert.equal(filterCatalog(catalog,{q:'Фрирен'})[0].id,52991);assert.equal(filterCatalog(catalog,{q:'pokemon twilight wings'})[0].id,40861);});
+test('Filters intersect; sorting does not mutate source',()=>{const first=catalog[0].id;const result=filterCatalog(catalog,{type:'MOVIE',genre:'fantasy',sort:'score'});assert.ok(result.length);assert.ok(result.every(a=>a.type==='MOVIE'&&a.genres.includes('fantasy')));assert.ok(result.every((a,i)=>!i||result[i-1].score>=a.score));assert.equal(catalog[0].id,first);});
+test('Watchable catalog never invents episodes for metadata-only anime',()=>{assert.deepEqual(filterCatalog(catalog,{watch:true},streams).map(a=>a.id),[40861,6654]);assert.equal(filterCatalog(catalog,{q:'Фрирен',watch:true},streams).length,0);});
+test('Episode registry maps seven distinct videos to the correct series',()=>{const list=streams[40861];assert.deepEqual(list.map(x=>x.number),[1,2,3,4,5,6,7]);assert.equal(new Set(list.map(x=>x.videoId)).size,7);for(const ep of list){assert.ok(videoUrl(ep.videoId));assert.equal(ep.source,'https://www.youtube.com/watch?v='+ep.videoId);assert.match(ep.originalTitle,new RegExp('Episode '+ep.number));assert.match(ep.publisher,/Official Pokémon/);}});
+test('Embed and URL validation rejects injected or untrusted URLs',()=>{assert.equal(videoUrl('abc?autoplay=1'),'');assert.equal(safeUrl('javascript:alert(1)',['youtube.com']),'');assert.equal(safeUrl('https://youtube.com.evil.test/',['youtube.com']),'');assert.equal(safeUrl('http://youtube.com/',['youtube.com']),'');assert.equal(escapeHtml('<img onerror="a">'),'&lt;img onerror=&quot;a&quot;&gt;');});

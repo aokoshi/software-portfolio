@@ -9,6 +9,13 @@ node_modules/
 **/app/
 **/Data/
 **/data/
+# Public, licensed HikkiAnime dataset, not user records
+!HikkiAnime/dist/data/
+HikkiAnime/dist/data/*
+!HikkiAnime/dist/data/catalog.json
+!HikkiAnime/dist/data/classic.json
+!HikkiAnime/dist/data/episodes.json
+!HikkiAnime/dist/data/LICENSE-ODbL.txt
 **/storage/
 .openai/
 .sites-runtime/
