@@ -1,0 +1,15 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {parseMoney,summary,empty,validate,demo,monthShift,csv,validDate} from '../src/domain.mjs';
+test('Exact integer cents: commas, spaces and fractional amounts',()=>{assert.equal(parseMoney('1 234,56'),123456);assert.equal(parseMoney('0.01'),1);assert.equal(parseMoney('10.1'),1010);assert.equal(parseMoney('10'),1000)});
+for(const input of ['','-1','0','1.234','Infinity','1e6','1,2,3'])test('Invalid money rejected: '+input,()=>assert.throws(()=>parseMoney(input)));
+test('Month summary separates income and expense and excludes other months',()=>{const rows=[{type:'income',date:'2026-09-01',amount:10000,category:'salary'},{type:'expense',date:'2026-09-02',amount:3500,category:'food'},{type:'expense',date:'2026-08-02',amount:9000,category:'food'}];const s=summary(rows,'2026-09');assert.equal(s.net,6500);assert.equal(s.expense,3500);assert.equal(s.byCategory.food,3500)});
+test('Month transitions across years',()=>{assert.equal(monthShift('2026-01',-1),'2025-12');assert.equal(monthShift('2026-12',1),'2027-01')});
+test('Dates reject impossible calendar days',()=>{assert.equal(validDate('2026-02-30'),false);assert.equal(validDate('2024-02-29'),true);assert.equal(validDate('2026-13-01'),false)});
+test('Empty and demo validate after JSON round trip',()=>{validate(empty());validate(JSON.parse(JSON.stringify(demo())))});
+test('Different application backup is rejected',()=>assert.throws(()=>validate({...empty(),app:'CampusMate'})));
+test('Duplicate IDs rejected',()=>{const v=demo();v.transactions.push(v.transactions[0]);assert.throws(()=>validate(v))});
+test('Fractional cents rejected in imported data',()=>{const v=demo();v.transactions[0].amount=.1;assert.throws(()=>validate(v))});
+test('Wrong transaction category rejected',()=>{const v=demo();v.transactions[0].category='food';assert.throws(()=>validate(v))});
+test('Duplicate category budgets rejected',()=>{const v=demo();v.budgets.push({...v.budgets[0],id:'another'});assert.throws(()=>validate(v))});
+test('Savings cannot be negative',()=>{const v=demo();v.goals[0].saved=-1;assert.throws(()=>validate(v))});
+test('CSV quotes delimiter and neutralizes formula prefixes',()=>{const t=demo().transactions[0];t.note='=1+1;"quote"';const text=csv([t]);assert.ok(text.includes('"\'=1+1;""quote"""'));assert.ok(text.startsWith('\uFEFF'))});

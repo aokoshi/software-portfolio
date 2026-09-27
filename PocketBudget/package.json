@@ -1,0 +1,32 @@
+{
+  "name": "pocketbudget",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.ts",
+  "scripts": {
+    "start": "expo start",
+    "web": "expo start --web",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/*.test.mjs",
+    "export:web": "expo export --platform web && node tools/prepare-web.mjs"
+  },
+  "dependencies": {
+    "expo": "~54.0.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-web": "^0.21.0",
+    "expo-status-bar": "~3.0.9",
+    "react-native-safe-area-context": "~5.6.0",
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "@expo/vector-icons": "^15.0.3",
+    "expo-file-system": "~19.0.21",
+    "expo-sharing": "~14.0.8",
+    "expo-document-picker": "~14.0.8"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.2",
+    "@types/react": "~19.1.10"
+  },
+  "packageManager": "pnpm@11.25.0"
+}

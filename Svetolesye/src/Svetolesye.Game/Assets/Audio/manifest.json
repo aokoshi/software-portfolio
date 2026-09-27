@@ -1,0 +1,227 @@
+[
+  {
+    "name": "valley",
+    "kind": "music",
+    "seconds": 20.425531914893618,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.65,
+    "rms": 0.18160158980107016
+  },
+  {
+    "name": "coast",
+    "kind": "music",
+    "seconds": 22.325581395348838,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.65,
+    "rms": 0.15803901069720314
+  },
+  {
+    "name": "summit",
+    "kind": "music",
+    "seconds": 24.615384615384617,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.65,
+    "rms": 0.1616049264589698
+  },
+  {
+    "name": "battle",
+    "kind": "music",
+    "seconds": 14.545454545454545,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.65,
+    "rms": 0.16016473160649733
+  },
+  {
+    "name": "boss",
+    "kind": "music",
+    "seconds": 13.333333333333334,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.65,
+    "rms": 0.15684148135251874
+  },
+  {
+    "name": "ambient-forest",
+    "kind": "ambience",
+    "seconds": 24,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.3,
+    "rms": 0.06291030867710015
+  },
+  {
+    "name": "ambient-sea",
+    "kind": "ambience",
+    "seconds": 24,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.3,
+    "rms": 0.055147797625875475
+  },
+  {
+    "name": "ambient-wind",
+    "kind": "ambience",
+    "seconds": 24,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.3,
+    "rms": 0.047324921184855595
+  },
+  {
+    "name": "fx-hit",
+    "kind": "effect",
+    "seconds": 0.7,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.576,
+    "rms": 0.09942303571389494
+  },
+  {
+    "name": "fx-leaf",
+    "kind": "effect",
+    "seconds": 0.7,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.6,
+    "rms": 0.17235218826907034
+  },
+  {
+    "name": "fx-ember",
+    "kind": "effect",
+    "seconds": 0.7,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.5595,
+    "rms": 0.12176667274140889
+  },
+  {
+    "name": "fx-water",
+    "kind": "effect",
+    "seconds": 0.7,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.6,
+    "rms": 0.15382440465455025
+  },
+  {
+    "name": "fx-stone",
+    "kind": "effect",
+    "seconds": 0.7,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.6,
+    "rms": 0.09091208369714003
+  },
+  {
+    "name": "fx-air",
+    "kind": "effect",
+    "seconds": 0.7,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.5314311762844091,
+    "rms": 0.10568181222883075
+  },
+  {
+    "name": "fx-capture",
+    "kind": "effect",
+    "seconds": 1.4,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.6,
+    "rms": 0.11882056827052859
+  },
+  {
+    "name": "fx-miss",
+    "kind": "effect",
+    "seconds": 0.7,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.6,
+    "rms": 0.314267788984467
+  },
+  {
+    "name": "fx-heal",
+    "kind": "effect",
+    "seconds": 1.2,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.5999999999999999,
+    "rms": 0.12310233587539998
+  },
+  {
+    "name": "fx-level",
+    "kind": "effect",
+    "seconds": 1.4,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.6,
+    "rms": 0.11984199514411725
+  },
+  {
+    "name": "fx-evolution",
+    "kind": "effect",
+    "seconds": 3.2,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.6,
+    "rms": 0.1131611556185362
+  },
+  {
+    "name": "fx-portal",
+    "kind": "effect",
+    "seconds": 0.7,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.6,
+    "rms": 0.16310530062924658
+  },
+  {
+    "name": "fx-beacon",
+    "kind": "effect",
+    "seconds": 0.7,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.6,
+    "rms": 0.16310530062924658
+  },
+  {
+    "name": "fx-victory",
+    "kind": "effect",
+    "seconds": 1.4,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.6,
+    "rms": 0.11882056827052859
+  },
+  {
+    "name": "fx-lose",
+    "kind": "effect",
+    "seconds": 1.5,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.6,
+    "rms": 0.14474258528080342
+  },
+  {
+    "name": "fx-encounter",
+    "kind": "effect",
+    "seconds": 0.7,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.6,
+    "rms": 0.30021627424120023
+  },
+  {
+    "name": "fx-click",
+    "kind": "effect",
+    "seconds": 0.7,
+    "sampleRate": 22050,
+    "channels": 2,
+    "peak": 0.46663393573549,
+    "rms": 0.047488949679632825
+  }
+]

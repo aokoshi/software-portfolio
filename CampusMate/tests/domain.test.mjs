@@ -1,0 +1,16 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {empty,demo,validate,lessonsOn,clashes,minutes,validDate,taskStatus,gradeAverage,removeCourse} from '../src/domain.mjs';
+test('Empty and demo validate after JSON round trip',()=>{validate(empty());validate(JSON.parse(JSON.stringify(demo())))});
+test('Sort lessons by start time within selected weekday',()=>{const rows=[{id:'2',day:2,start:'13:00'},{id:'1',day:2,start:'09:00'},{id:'3',day:3,start:'08:00'}];assert.deepEqual(lessonsOn(rows,2).map(r=>r.id),['1','2'])});
+test('Overlapping lessons detected but touching boundaries allowed',()=>{const rows=[{id:'a',day:1,start:'09:00',end:'10:20'}];assert.equal(clashes(rows,{id:'b',day:1,start:'10:00',end:'11:00'}),true);assert.equal(clashes(rows,{id:'b',day:1,start:'10:20',end:'11:40'}),false);assert.equal(clashes(rows,{id:'a',day:1,start:'09:00',end:'10:20'}),false)});
+test('Time validation rejects invalid and ambiguous values',()=>{assert.ok(Number.isNaN(minutes('24:00')));assert.ok(Number.isNaN(minutes('9:00')));assert.equal(minutes('23:59'),1439)});
+test('Calendar validates leap days',()=>{assert.equal(validDate('2024-02-29'),true);assert.equal(validDate('2026-02-29'),false)});
+test('Deadline states use local calendar dates',()=>{assert.equal(taskStatus({done:false,due:'2026-09-26'},'2026-09-27'),'overdue');assert.equal(taskStatus({done:false,due:'2026-09-27'},'2026-09-27'),'today');assert.equal(taskStatus({done:true,due:'2026-09-26'},'2026-09-27'),'done')});
+test('Weighted normalized grades rather than raw point sum',()=>{assert.equal(gradeAverage([{score:10,max:20,weight:1},{score:100,max:100,weight:3}]),87.5);assert.equal(gradeAverage([]),null)});
+test('Removing a course cascades only associated records',()=>{const d=demo(),result=removeCourse(d,'c1');assert.ok(result.courses.every(c=>c.id!=='c1'));for(const key of ['lessons','tasks','grades'])assert.ok(result[key].every(r=>r.courseId!=='c1'));assert.equal(d.courses.length,3);validate(result)});
+test('Unknown course in backup is rejected',()=>{const d=demo();d.tasks[0].courseId='missing';assert.throws(()=>validate(d))});
+test('Invalid grade maximum rejected',()=>{const d=demo();d.grades[0].max=0;assert.throws(()=>validate(d))});
+test('Grade above maximum rejected',()=>{const d=demo();d.grades[0].score=101;assert.throws(()=>validate(d))});
+test('Invalid time ordering rejected',()=>{const d=demo();d.lessons[0].end='08:00';assert.throws(()=>validate(d))});
+test('Duplicate IDs rejected',()=>{const d=demo();d.courses.push(d.courses[0]);assert.throws(()=>validate(d))});
+test('Wrong application backup rejected',()=>assert.throws(()=>validate({...empty(),app:'PocketBudget'})));

@@ -1,0 +1,62 @@
+CREATE TABLE IF NOT EXISTS users (
+ id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+ name VARCHAR(80) NOT NULL, email VARCHAR(160) NOT NULL UNIQUE,
+ password_hash VARCHAR(255) NOT NULL,
+ role ENUM('admin','manager','warehouse') NOT NULL,
+ created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE IF NOT EXISTS warehouses (
+ id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100) NOT NULL UNIQUE,
+ address VARCHAR(200) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE IF NOT EXISTS products (
+ id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, sku VARCHAR(40) NOT NULL UNIQUE,
+ name VARCHAR(120) NOT NULL, category VARCHAR(60) NOT NULL, supplier VARCHAR(100) NOT NULL,
+ cost BIGINT UNSIGNED NOT NULL, price BIGINT UNSIGNED NOT NULL,
+ minimum INT UNSIGNED NOT NULL DEFAULT 5, active BOOLEAN NOT NULL DEFAULT TRUE,
+ created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE IF NOT EXISTS stocks (
+ product_id INT UNSIGNED NOT NULL, warehouse_id INT UNSIGNED NOT NULL,
+ quantity INT NOT NULL DEFAULT 0, reserved INT NOT NULL DEFAULT 0,
+ PRIMARY KEY(product_id,warehouse_id),
+ FOREIGN KEY(product_id) REFERENCES products(id), FOREIGN KEY(warehouse_id) REFERENCES warehouses(id),
+ CHECK(quantity>=0), CHECK(reserved>=0 AND reserved<=quantity)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS orders (
+ id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, customer VARCHAR(120) NOT NULL,
+ warehouse_id INT UNSIGNED NOT NULL, actor_id INT UNSIGNED NOT NULL,
+ status ENUM('reserved','shipped','cancelled') NOT NULL DEFAULT 'reserved',
+ note VARCHAR(1000) NOT NULL DEFAULT '', created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ FOREIGN KEY(warehouse_id) REFERENCES warehouses(id), FOREIGN KEY(actor_id) REFERENCES users(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE IF NOT EXISTS order_items (
+ order_id INT UNSIGNED NOT NULL, product_id INT UNSIGNED NOT NULL,
+ title VARCHAR(120) NOT NULL, sku VARCHAR(40) NOT NULL,
+ quantity INT UNSIGNED NOT NULL, price BIGINT UNSIGNED NOT NULL,
+ PRIMARY KEY(order_id,product_id), FOREIGN KEY(order_id) REFERENCES orders(id), FOREIGN KEY(product_id) REFERENCES products(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE IF NOT EXISTS movements (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+ product_id INT UNSIGNED NOT NULL, warehouse_id INT UNSIGNED NOT NULL,
+ kind ENUM('receipt','writeoff','transfer_in','transfer_out','reserve','release','ship') NOT NULL,
+ delta INT NOT NULL, reserved_delta INT NOT NULL DEFAULT 0, balance INT NOT NULL, reserved_balance INT NOT NULL,
+ actor_id INT UNSIGNED NULL, order_id INT UNSIGNED NULL, reason VARCHAR(1000) NOT NULL,
+ reference CHAR(36) NOT NULL, created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ FOREIGN KEY(product_id) REFERENCES products(id), FOREIGN KEY(warehouse_id) REFERENCES warehouses(id),
+ FOREIGN KEY(actor_id) REFERENCES users(id), FOREIGN KEY(order_id) REFERENCES orders(id),
+ INDEX movement_date(created_at), INDEX movement_stock(product_id,warehouse_id,id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE IF NOT EXISTS audit (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, actor_id INT UNSIGNED NULL,
+ action VARCHAR(80) NOT NULL, detail TEXT NOT NULL, created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ FOREIGN KEY(actor_id) REFERENCES users(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE IF NOT EXISTS commands (
+ request_key VARCHAR(80) PRIMARY KEY, actor_id INT UNSIGNED NOT NULL,
+ payload_hash CHAR(64) NOT NULL, result_json TEXT NULL,
+ FOREIGN KEY(actor_id) REFERENCES users(id)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS login_limits (
+ bucket CHAR(64) PRIMARY KEY, attempts INT NOT NULL, reset_at BIGINT NOT NULL
+) ENGINE=InnoDB;

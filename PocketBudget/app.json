@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "ios": {
+      "bundleIdentifier": "com.portfolio.pocketbudget",
+      "supportsTablet": true
+    },
+    "name": "PocketBudget",
+    "newArchEnabled": true,
+    "scheme": "pocketbudget",
+    "android": {
+      "package": "com.portfolio.pocketbudget"
+    },
+    "plugins": [
+      "expo-document-picker"
+    ],
+    "extra": {
+      "storage": "local",
+      "currency": "KZT"
+    },
+    "web": {
+      "name": "PocketBudget",
+      "themeColor": "#167363",
+      "bundler": "metro",
+      "output": "single",
+      "favicon": "./assets/icon-192.png"
+    },
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "slug": "pocketbudget",
+    "version": "1.0.0",
+    "icon": "./assets/icon-1024.png"
+  }
+}

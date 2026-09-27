@@ -1,0 +1,94 @@
+name: Project checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Marketplace integration tests
+        run: node --test tests/marketplace.test.mjs
+        working-directory: delo-services
+      - name: Game website assets
+        run: node check.mjs
+        working-directory: Svetolesye-site
+
+  mobile:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project: [CampusMate, PocketBudget]
+    defaults:
+      run:
+        working-directory: ${{ matrix.project }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: '11.25.0'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: pnpm
+          cache-dependency-path: ${{ matrix.project }}/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm export:web
+
+  desktop:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        project: [FocusDesk, Svetolesye]
+    defaults:
+      run:
+        working-directory: ${{ matrix.project }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - run: dotnet build ${{ matrix.project }}.slnx -c Release
+      - run: dotnet run --project tests/${{ matrix.project }}.Tests -c Release --no-build
+
+  inventory:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: ci-test-only
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost -pci-test-only"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+    env:
+      STOCKFLOW_DB_HOST: 127.0.0.1
+      STOCKFLOW_DB_USER: root
+      STOCKFLOW_DB_PASSWORD: ci-test-only
+    defaults:
+      run:
+        working-directory: stockflow
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: pdo_mysql
+      - run: find . -name '*.php' -print0 | xargs -0 -n1 php -l
+      - run: php tests/run.php

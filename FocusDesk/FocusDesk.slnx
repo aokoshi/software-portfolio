@@ -1,0 +1,4 @@
+<Solution>
+ <Folder Name="/src/"><Project Path="src/FocusDesk.Core/FocusDesk.Core.csproj" /><Project Path="src/FocusDesk.App/FocusDesk.App.csproj" /></Folder>
+ <Folder Name="/tests/"><Project Path="tests/FocusDesk.Tests/FocusDesk.Tests.csproj" /></Folder>
+</Solution>

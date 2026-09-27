@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>WinExe</OutputType><ApplicationIcon>Assets/FocusDesk.ico</ApplicationIcon><TargetFramework>net10.0-windows</TargetFramework><UseWPF>true</UseWPF><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><AssemblyName>FocusDesk</AssemblyName><RootNamespace>FocusDesk.App</RootNamespace></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../FocusDesk.Core/FocusDesk.Core.csproj" /></ItemGroup>
+  <ItemGroup><Resource Include="Assets/FocusDesk.ico" /></ItemGroup>
+</Project>

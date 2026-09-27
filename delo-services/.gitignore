@@ -1,0 +1,10 @@
+node_modules/
+.sites-runtime/
+*.tar.gz
+*.zip
+.env
+test-results/
+data/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
